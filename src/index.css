@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 200 20% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    --primary: 174 72% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 20% 96%;
+    --secondary-foreground: 215 25% 15%;
+
+    --muted: 200 15% 94%;
+    --muted-foreground: 215 15% 50%;
+
+    --accent: 174 72% 95%;
+    --accent-foreground: 174 72% 30%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 200 20% 90%;
+    --input: 200 20% 90%;
+    --ring: 174 72% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom school colors */
+    --school-navy: 215 50% 18%;
+    --school-teal: 174 72% 40%;
+    --school-teal-light: 174 72% 95%;
+    --school-gold: 45 90% 55%;
+    --school-gray: 200 15% 60%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 215 25% 10%;
+    --foreground: 200 20% 98%;
+
+    --card: 215 25% 12%;
+    --card-foreground: 200 20% 98%;
+
+    --popover: 215 25% 12%;
+    --popover-foreground: 200 20% 98%;
+
+    --primary: 174 72% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 25% 18%;
+    --secondary-foreground: 200 20% 98%;
+
+    --muted: 215 25% 20%;
+    --muted-foreground: 200 15% 60%;
+
+    --accent: 174 50% 20%;
+    --accent-foreground: 174 72% 70%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 174 72% 45%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom school colors - dark mode overrides */
+    --school-navy: 200 20% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
+    color: hsl(var(--school-navy));
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-sm font-semibold uppercase tracking-widest;
+    color: hsl(var(--school-teal));
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+    color: hsl(var(--school-navy));
+  }
+
+  .dark .section-title {
+    color: hsl(var(--foreground));
+  }
+
+  .card-elevated {
+    @apply bg-card rounded-xl shadow-sm border border-border/50 transition-all duration-300;
+  }
+
+  .card-elevated:hover {
+    @apply shadow-md -translate-y-0.5;
+  }
+
+  .badge-status {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium;
+    background: hsl(var(--school-teal-light));
+    color: hsl(var(--school-teal));
+  }
+
+  .stat-item {
+    @apply flex items-center gap-3;
+  }
+
+  .feature-check {
+    @apply flex items-center gap-3 text-muted-foreground;
+  }
+
+  .feature-check svg {
+    color: hsl(var(--school-teal));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-teal {
+    background: linear-gradient(135deg, hsl(var(--school-teal)) 0%, hsl(180 60% 35%) 100%);
+  }
+
+  .border-left-accent {
+    border-left: 4px solid hsl(var(--school-teal));
+  }
+}
