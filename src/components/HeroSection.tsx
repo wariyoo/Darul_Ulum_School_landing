@@ -1,7 +1,8 @@
-import { useRef, useEffect } from "react";
-import { motion, useInView, useSpring, useMotionValue, useTransform } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { motion, useInView, useSpring, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Award, BookOpen } from "lucide-react";
+import { ArrowRight, Users, Award, BookOpen, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-school-new.png";
 
 const Counter = ({ value, label, icon: Icon }: { value: string; label: string; icon: any }) => {
@@ -46,6 +47,9 @@ const Counter = ({ value, label, icon: Icon }: { value: string; label: string; i
 };
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+  const [showApplyModal, setShowApplyModal] = useState(false);
+
   const stats = [
     { icon: Users, value: "2,500+", label: "Happy Students" },
     { icon: Award, value: "98%", label: "Success Rate" },
@@ -113,11 +117,20 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            <Button size="lg" className="bg-school-teal hover:bg-school-teal/90 text-white h-14 px-8 text-lg rounded-full">
+            <Button
+              size="lg"
+              className="bg-school-teal hover:bg-school-teal/90 text-white h-14 px-8 text-lg rounded-full"
+              onClick={() => setShowApplyModal(true)}
+            >
               Apply Now
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/20 h-14 px-8 text-lg rounded-full">
+            <Button
+              size="lg"
+              variant="outline"
+              className="bg-white/10 hover:bg-white/20 text-white border-white/20 h-14 px-8 text-lg rounded-full"
+              onClick={() => navigate("/programs")}
+            >
               Explore Programs
             </Button>
           </motion.div>
@@ -140,6 +153,49 @@ const HeroSection = () => {
           ))}
         </motion.div>
       </div>
+
+
+      {/* Apply Now Modal */}
+      <AnimatePresence>
+        {showApplyModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center"
+            onClick={() => setShowApplyModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-white rounded-xl relative flex items-center justify-center p-8 text-center"
+              style={{ width: "90%", height: "90%" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowApplyModal(false)}
+                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-800" />
+              </button>
+
+              <div className="max-w-2xl space-y-6">
+                <h2 className="text-4xl md:text-5xl font-bold text-school-navy">
+                  Admission Information
+                </h2>
+                <div className="w-24 h-1 bg-school-teal mx-auto rounded-full" />
+                <p className="text-2xl md:text-3xl text-gray-700 leading-relaxed font-medium">
+                  Visit our Registrar and the working days
+                </p>
+                <p className="text-gray-500 mt-8">
+                  Please come to the school administration office for registration details.
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

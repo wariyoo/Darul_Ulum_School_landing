@@ -6,13 +6,15 @@ interface ScrollAnimationProps {
   className?: string;
   delay?: number;
   direction?: "up" | "down" | "left" | "right";
+  id?: string;
 }
 
-const ScrollAnimation = ({ 
-  children, 
-  className = "", 
+const ScrollAnimation = ({
+  children,
+  className = "",
   delay = 0,
-  direction = "up" 
+  direction = "up",
+  id
 }: ScrollAnimationProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -37,6 +39,7 @@ const ScrollAnimation = ({
   return (
     <motion.div
       ref={ref}
+      id={id}
       className={className}
       initial={{ opacity: 0, ...initial }}
       animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, ...initial }}

@@ -4,19 +4,36 @@ import { Input } from "@/components/ui/input";
 
 const Footer = () => {
   const quickLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about" },
-    { name: "Our Leaders", href: "#leaders" },
-    { name: "Programs", href: "#" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/#home" },
+    { name: "About Us", href: "/#about" },
+    { name: "Our Leaders", href: "/staff" },
+    { name: "Programs", href: "/programs" },
+    { name: "Contact", href: "/#contact" },
   ];
 
+
+
   const programs = [
-    { name: "Early Childhood", href: "#" },
-    { name: "Primary School", href: "#" },
-    { name: "Middle School", href: "#" },
-    { name: "High School", href: "#" },
-    { name: "Special Programs", href: "#" },
+    {
+      name: "Early Childhood",
+      href: "/programs#early-childhood",
+    },
+    {
+      name: "Primary School",
+      href: "/programs#primary-school",
+    },
+    {
+      name: "Middle School",
+      href: "/programs#middle-school",
+    },
+    {
+      name: "High School",
+      href: "/programs#high-school",
+    },
+    {
+      name: "Special Programs",
+      href: "/programs#special-programs",
+    },
   ];
 
   const socialLinks = [
@@ -32,7 +49,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="space-y-6">
-            <a href="#home" className="flex items-center gap-3">
+            <a href="/" className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-school-teal" />
               </div>
@@ -83,7 +100,7 @@ const Footer = () => {
                 <li key={program.name}>
                   <a
                     href={program.href}
-                    className="text-gray-300 hover:text-school-teal transition-colors text-sm flex items-center gap-2 group"
+                    className="text-gray-300 hover:text-school-teal transition-colors text-sm flex items-center gap-2 group w-full text-left"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-school-teal opacity-0 group-hover:opacity-100 transition-opacity" />
                     {program.name}
@@ -111,6 +128,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
